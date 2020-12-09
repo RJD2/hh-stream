@@ -5,6 +5,7 @@ import common.PersonService;
 import common.Task;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,8 +22,12 @@ public class Task1 implements Task {
   // !!! Редактируйте этот метод !!!
   private List<Person> findOrderedPersons(List<Integer> personIds) {
     Set<Person> persons = PersonService.findPersons(personIds);
-    return Collections.emptyList();
+    List<Person> data = List.copyOf(persons);
+    return data.stream()
+            .sorted(Comparator.comparing(item->personIds.indexOf(item.getId())))
+            .collect(Collectors.toList());
   }
+  // Асимптотика O(n)
 
   @Override
   public boolean check() {

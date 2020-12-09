@@ -2,4 +2,4 @@
 out/
 .directory
 *.iml
-.DC_Store
+.DS_Store
